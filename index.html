@@ -3773,125 +3773,6 @@ body.tour-on{overflow:hidden}
   .bibi{bottom:calc(16px + env(safe-area-inset-bottom))}
 }
 
-/* ═══════════════ App 安裝引導 ═══════════════ */
-.igwrap{
-  position:fixed;inset:0;z-index:95;background:rgba(40,44,48,.58);
-  backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;
-  padding:14px;animation:tourFade .3s ease;
-}
-.igwrap[hidden]{display:none}
-@media(min-width:700px){.igwrap{align-items:center}}
-.igbox{
-  width:min(520px,100%);max-height:92vh;overflow:auto;
-  background:var(--card);border:1.5px solid var(--line);border-radius:22px;
-  padding:16px 18px 14px;box-shadow:0 20px 50px rgba(20,25,32,.35);
-  animation:tourUp .38s cubic-bezier(.2,.9,.3,1.2);
-}
-.ig-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.ig-brand{
-  flex:1;display:flex;align-items:center;gap:9px;
-  font-family:var(--serif);font-size:15px;color:var(--ink);
-}
-.ig-icon{
-  width:30px;height:30px;border-radius:9px;flex:0 0 auto;
-  background:linear-gradient(160deg,#E4F2EC,#E7EEF9);
-  border:1.5px solid var(--line);position:relative;
-}
-.ig-icon::before{
-  content:"";position:absolute;left:5px;top:3px;right:5px;height:8px;
-  border-radius:5px 5px 2px 2px;background:#2C364C;
-}
-.ig-icon::after{
-  content:"^‿^";position:absolute;left:0;right:0;top:12px;text-align:center;
-  font-family:var(--mono);font-size:8px;color:#8FD2FF;
-}
-.ig-eyebrow{
-  margin:0 0 5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--ink-soft);
-}
-.ig-t{margin:0 0 8px;font-family:var(--serif);font-size:22px;line-height:1.35;color:var(--now)}
-.ig-d{margin:0 0 16px;font-size:13.5px;line-height:1.95;color:var(--ink-soft)}
-
-/* 步驟 */
-.ig-steps{display:flex;flex-direction:column;gap:11px;margin-bottom:16px}
-.igstep{
-  display:flex;align-items:center;gap:12px;
-  background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;
-}
-.igs-no{
-  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
-  background:var(--now);color:#fff;font-family:var(--mono);font-size:12px;
-  display:flex;align-items:center;justify-content:center;
-}
-.igs-body{flex:1;min-width:0}
-.igs-t{margin:0 0 2px;font-family:var(--serif);font-size:15px}
-.igs-d{margin:0;font-size:12px;line-height:1.7;color:var(--ink-soft)}
-
-/* 手機示意圖 */
-.phone{
-  flex:0 0 auto;position:relative;width:52px;height:82px;border-radius:9px;
-  background:linear-gradient(180deg,#FFFDFA,#F1ECE2);
-  border:2px solid #3A403E;box-shadow:0 2px 6px rgba(58,64,62,.18);
-  display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
-}
-.phone::before{      /* 瀏海 */
-  content:"";position:absolute;left:50%;top:3px;transform:translateX(-50%);
-  width:18px;height:3px;border-radius:99px;background:#3A403E;
-}
-.ph-bar{
-  width:100%;height:16px;background:#E7EEF9;border-top:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-}
-.ph-share{
-  font-style:normal;font-size:10px;color:var(--past);
-  animation:igPulse 1.6s ease-in-out infinite;
-}
-@keyframes igPulse{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(-3px);opacity:1}}
-.ph-sheet{width:100%;padding:0 4px 4px;display:flex;flex-direction:column;gap:3px}
-.ph-row{display:block;height:9px;border-radius:3px;background:#E3DED2}
-.ph-row.hi{
-  height:13px;background:var(--now-bg);border:1px solid var(--now);
-  font-style:normal;font-size:5.5px;color:var(--now);
-  display:flex;align-items:center;justify-content:center;
-}
-.ph-home{
-  width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:3px;
-  background:linear-gradient(160deg,#DCEAF6,#E9E2F3);
-}
-.ph-app{
-  width:20px;height:20px;border-radius:6px;
-  background:linear-gradient(160deg,#E4F2EC,#E7EEF9);border:1px solid #C8D6CE;position:relative;
-  animation:igPop 1.8s ease-in-out infinite;
-}
-.ph-app::before{content:"";position:absolute;left:3px;top:2px;right:3px;height:5px;border-radius:3px 3px 1px 1px;background:#2C364C}
-@keyframes igPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.ph-label{font-size:5px;color:#3A403E}
-.ph-url{
-  width:44px;margin-bottom:26px;padding:3px 0;text-align:center;
-  font-family:var(--mono);font-size:6px;color:var(--ink-soft);
-  background:var(--card);border:1px solid var(--line);border-radius:5px;
-}
-.ph-btn{
-  margin-bottom:28px;padding:4px 10px;border-radius:99px;
-  background:var(--now);color:#fff;font-size:8px;
-  animation:igPulse 1.6s ease-in-out infinite;
-}
-.ph-dialog{
-  width:44px;margin-bottom:20px;padding:5px 4px;border-radius:6px;
-  background:var(--card);border:1px solid var(--line);
-  font-size:5.5px;line-height:1.5;color:var(--ink-soft);text-align:center;
-}
-.ph-dialog i{
-  display:block;margin-top:3px;font-style:normal;font-size:6px;
-  color:#fff;background:var(--now);border-radius:99px;padding:2px 0;
-}
-.ph-menu{
-  position:absolute;right:4px;top:8px;font-size:12px;color:var(--ink);
-  animation:igPulse 1.6s ease-in-out infinite;
-}
-.ig-acts{display:flex;gap:8px;flex-wrap:wrap}
-.ig-acts .btn{flex:1 1 auto;text-align:center}
-
 </style>
 </head>
 <body>
@@ -3948,9 +3829,9 @@ body.tour-on{overflow:hidden}
     <div class="ins-ic">📱</div>
     <div class="ins-body">
       <p class="ins-t">把轉運站裝到手機主畫面</p>
-      <p class="ins-d" id="insD">安裝後沒有網路也能用，開起來像一般的 App。點右邊看你的手機該怎麼裝。</p>
+      <p class="ins-d" id="insD">安裝後可以離線使用，開啟速度也更快，就像一般的 App。</p>
     </div>
-    <button class="btn solid" id="installBtn">看安裝步驟</button>
+    <button class="btn solid" id="installBtn">安裝</button>
   </div>
 
   <div class="card gate" id="gateCard">
@@ -4004,7 +3885,6 @@ body.tour-on{overflow:hidden}
       <div class="toolbar">
         <button class="btn tiny" id="introSay">🔈 聽站長自我介紹</button>
         <button class="btn tiny" id="tourReplay">🚉 重看新手導覽</button>
-        <button class="btn tiny" id="igOpen">📱 安裝到手機</button>
         <button class="btn tiny" id="introStop">停止</button>
         <button class="btn solid" id="bibiHi">跟站長打招呼</button>
         <a class="btn" href="#" data-target="sec-route">看轉運路線圖</a>
@@ -4269,25 +4149,6 @@ body.tour-on{overflow:hidden}
 
 <p class="footline">溯源，塑局<span class="build-ver">v2026.08.21　App</span></p>
 </main>
-
-<!-- ═══ App 安裝引導 ═══ -->
-<div class="igwrap" id="igWrap" hidden>
-  <div class="igbox">
-    <div class="ig-top">
-      <span class="ig-brand"><span class="ig-icon"></span>英文轉運站</span>
-      <button class="tour-x" id="igClose" aria-label="關閉">✕</button>
-    </div>
-
-    <p class="ig-eyebrow" id="igTag">INSTALL　安裝到主畫面</p>
-    <h3 class="ig-t" id="igTitle">把轉運站帶著走</h3>
-    <p class="ig-d" id="igDesc"></p>
-
-    <div class="ig-steps" id="igSteps"></div>
-
-    <div class="ig-acts" id="igActs"></div>
-    <label class="tour-never"><input type="checkbox" id="igNever"> 以後不要再提醒</label>
-  </div>
-</div>
 <!-- ═══ 新手導覽：嗶嗶站長帶路 ═══ -->
 <div class="tourwrap" id="tourWrap" hidden>
   <div class="tourbox">
@@ -5587,181 +5448,47 @@ document.getElementById("weeklyBtn").onclick=renderWeekly;
 
 
 
-/* ═══════════════ App 安裝引導 ═══════════════ */
-const INS_KEY="station_install_v1";
+/* ═══════════════ 安裝成 App ═══════════════ */
 let deferredPrompt=null;
-
-const UA=navigator.userAgent||"";
-const isIOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-const isAndroid=/Android/i.test(UA);
-const isSafari=isIOS&&!/CriOS|FxiOS|EdgiOS|OPiOS/i.test(UA);
 function isStandalone(){
-  return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)
+  return window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches
       || window.navigator.standalone===true;
 }
-function insDismissed(){
-  try{return localStorage.getItem(INS_KEY)==="1";}catch(e){return false;}
+function isIOS(){
+  return /iPad|iPhone|iPod/.test(navigator.userAgent||"")&&!window.MSStream;
 }
-function insDismiss(){
-  try{localStorage.setItem(INS_KEY,"1");}catch(e){}
-}
-
-/* 各平台的步驟：每步有標題、說明與一張手機示意圖 */
-const IG={
- ios:{
-  tag:"iPhone · iPad　三個步驟",
-  title:"用 Safari 加到主畫面",
-  desc:"iPhone 的安裝要在 Safari 裡完成，做完之後主畫面就會多一個嗶嗶站長的圖示，跟一般 App 一樣全螢幕開啟。",
-  steps:[
-   {n:1,t:"點畫面下方的分享鈕",d:"Safari 最下面那一排，中間往上的箭頭就是分享。",art:"share"},
-   {n:2,t:"往下滑，選「加入主畫面」",d:"選單裡有一個加號的方框圖示，點它。",art:"add"},
-   {n:3,t:"按右上角「新增」",d:"名稱可以保留「英文轉運站」，按下新增就完成了。",art:"done"}
-  ],
-  acts:[{k:"ok",label:"我照著做了"}]
- },
- iosOther:{
-  tag:"iPhone · iPad　請換瀏覽器",
-  title:"這個瀏覽器沒辦法安裝",
-  desc:"iPhone 只有 Safari 能把網站加到主畫面。請複製網址，改用 Safari 打開，再照著三個步驟做一次。",
-  steps:[
-   {n:1,t:"複製這個網址",d:"按下方的按鈕就會複製起來。",art:"link"},
-   {n:2,t:"打開 Safari 貼上",d:"在 Safari 的網址列貼上並前往。",art:"safari"},
-   {n:3,t:"分享鈕 → 加入主畫面",d:"接著就跟一般安裝一樣了。",art:"share"}
-  ],
-  acts:[{k:"copy",label:"複製網址"},{k:"ok",label:"我知道了"}]
- },
- android:{
-  tag:"Android　一鍵安裝",
-  title:"直接安裝到主畫面",
-  desc:"按下面的安裝鈕，手機會跳出確認視窗，按「安裝」就完成了。之後沒有網路也能打開。",
-  steps:[
-   {n:1,t:"按「立即安裝」",d:"系統會跳出一個確認視窗。",art:"install"},
-   {n:2,t:"確認安裝",d:"視窗上再按一次「安裝」。",art:"confirm"},
-   {n:3,t:"回到主畫面",d:"會多一個嗶嗶站長的圖示，點它就能全螢幕開啟。",art:"done"}
-  ],
-  acts:[{k:"install",label:"立即安裝"},{k:"ok",label:"稍後再說"}]
- },
- androidManual:{
-  tag:"Android　兩個步驟",
-  title:"從選單加到主畫面",
-  desc:"如果沒有跳出安裝鈕，可以從瀏覽器的選單手動加入。",
-  steps:[
-   {n:1,t:"點右上角的選單",d:"Chrome 網址列右邊的三個點。",art:"menu"},
-   {n:2,t:"選「安裝應用程式」",d:"或是「加到主畫面」，兩者都可以。",art:"add"},
-   {n:3,t:"回到主畫面",d:"點嗶嗶站長的圖示就能開啟。",art:"done"}
-  ],
-  acts:[{k:"ok",label:"我知道了"}]
- },
- desktop:{
-  tag:"電腦　安裝為視窗版",
-  title:"也可以裝在電腦上",
-  desc:"Chrome 或 Edge 的網址列右側會有一個安裝圖示，按下去就會變成一個獨立視窗，不會被其他分頁干擾。",
-  steps:[
-   {n:1,t:"看網址列右側",d:"找一個螢幕加箭頭的小圖示。",art:"install"},
-   {n:2,t:"按下安裝",d:"或從右上角選單選「安裝…」。",art:"menu"},
-   {n:3,t:"開成獨立視窗",d:"之後可以釘在工作列或 Dock。",art:"done"}
-  ],
-  acts:[{k:"install",label:"立即安裝"},{k:"ok",label:"我知道了"}]
- },
- installed:{
-  tag:"DONE　已完成",
-  title:"你已經在 App 裡了",
-  desc:"這個頁面正以 App 模式執行，離線也能使用。祝你旅途順利，下一站，英文滿分。",
-  steps:[],
-  acts:[{k:"ok",label:"開始搭乘 🚄"}]
- }
-};
-
-function igMode(){
-  if(isStandalone())return "installed";
-  if(isIOS)return isSafari?"ios":"iosOther";
-  if(isAndroid)return deferredPrompt?"android":"androidManual";
-  return "desktop";
-}
-function igArt(kind){
-  /* 用 CSS 畫的手機示意圖 */
-  const inner={
-    share:'<span class="ph-bar"><i class="ph-share">⬆</i></span>',
-    add:'<span class="ph-sheet"><i class="ph-row"></i><i class="ph-row hi">＋　加入主畫面</i><i class="ph-row"></i></span>',
-    done:'<span class="ph-home"><i class="ph-app"></i><span class="ph-label">英文轉運站</span></span>',
-    link:'<span class="ph-url">https://…</span>',
-    safari:'<span class="ph-url">貼上網址</span>',
-    install:'<span class="ph-btn">安裝</span>',
-    confirm:'<span class="ph-dialog">安裝這個應用程式？<i>安裝</i></span>',
-    menu:'<span class="ph-menu">⋮</span>'
-  }[kind]||"";
-  return '<span class="phone">'+inner+'</span>';
-}
-function igRender(){
-  const m=igMode(), c=IG[m];
-  document.getElementById("igTag").textContent=c.tag;
-  document.getElementById("igTitle").textContent=c.title;
-  document.getElementById("igDesc").textContent=c.desc;
-  document.getElementById("igSteps").innerHTML=c.steps.map(st=>
-    '<div class="igstep">'+
-      '<span class="igs-no">'+st.n+'</span>'+
-      igArt(st.art)+
-      '<div class="igs-body"><p class="igs-t">'+st.t+'</p><p class="igs-d">'+st.d+'</p></div>'+
-    '</div>').join("");
-  document.getElementById("igActs").innerHTML=c.acts.map(a=>
-    '<button class="btn'+(a.k!=="ok"?" solid":"")+'" data-ik="'+a.k+'">'+a.label+'</button>').join("");
-}
-function igOpen(){
-  igRender();
-  document.getElementById("igWrap").hidden=false;
-  if(document.body&&document.body.classList)document.body.classList.add("tour-on");
-}
-function igClose(){
-  document.getElementById("igWrap").hidden=true;
-  if(document.body&&document.body.classList)document.body.classList.remove("tour-on");
-  const nv=document.getElementById("igNever");
-  if(nv&&nv.checked)insDismiss();
-}
-document.getElementById("igClose").onclick=igClose;
-document.getElementById("igOpen").onclick=igOpen;
-document.getElementById("igActs").onclick=async e=>{
-  const b=e.target.closest("[data-ik]");if(!b)return;
-  const k=b.dataset.ik;
-  if(k==="ok"){insDismiss();igClose();return;}
-  if(k==="copy"){
-    try{await navigator.clipboard.writeText(location.href);b.textContent="已複製 ✓";}
-    catch(err){b.textContent=location.href;}
-    return;
-  }
-  if(k==="install"){
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      try{await deferredPrompt.userChoice;}catch(err){}
-      deferredPrompt=null;insDismiss();igClose();
-    }else{
-      b.textContent="請用瀏覽器選單安裝";
-      igRender();
-    }
-  }
-};
-window.addEventListener("beforeinstallprompt",e=>{
-  e.preventDefault();deferredPrompt=e;
-  const card=document.getElementById("installCard");
-  if(card&&!isStandalone()&&!insDismissed())card.hidden=false;
-});
-window.addEventListener("appinstalled",()=>{
-  deferredPrompt=null;insDismiss();
-  const card=document.getElementById("installCard");if(card)card.hidden=true;
-  igClose();
-});
-/* 首頁的常駐提示卡 */
-(function(){
+function showInstall(mode){
   const card=document.getElementById("installCard");
   if(!card)return;
-  if(isStandalone()||insDismissed())return;
   card.hidden=false;
-  document.getElementById("installBtn").onclick=igOpen;
-})();
-/* 自動出現：新手導覽走完之後，隔一會兒再提醒一次 */
-function igMaybeAuto(){
-  if(isStandalone()||insDismissed())return;
-  setTimeout(igOpen,1200);
+  const d=document.getElementById("insD"), b=document.getElementById("installBtn");
+  if(mode==="ios"){
+    d.innerHTML="在 Safari 點下方的<b>分享</b>按鈕 <span class='ins-key'>􀈂</span>，選<b>加入主畫面</b>，就會多一個嗶嗶站長的圖示。";
+    b.textContent="我知道了";
+    b.onclick=()=>{card.hidden=true;try{localStorage.setItem("station_install_v1","1");}catch(e){}};
+  }else{
+    d.textContent="安裝後可以離線使用，開啟速度也更快，就像一般的 App。";
+    b.textContent="安裝";
+    b.onclick=async()=>{
+      if(!deferredPrompt)return;
+      deferredPrompt.prompt();
+      try{await deferredPrompt.userChoice;}catch(e){}
+      deferredPrompt=null;card.hidden=true;
+    };
+  }
 }
+window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault();deferredPrompt=e;showInstall("prompt");
+});
+window.addEventListener("appinstalled",()=>{
+  const c=document.getElementById("installCard");if(c)c.hidden=true;
+  try{localStorage.setItem("station_install_v1","1");}catch(e){}
+});
+(function(){
+  let dismissed=false;
+  try{dismissed=localStorage.getItem("station_install_v1")==="1";}catch(e){}
+  if(!isStandalone()&&!dismissed&&isIOS())setTimeout(()=>showInstall("ios"),1400);
+})();
 
 /* ═══════════════ 新手導覽：嗶嗶站長帶路 ═══════════════ */
 function enFix(t){
@@ -5863,7 +5590,7 @@ function tourClose(){
 }
 document.getElementById("tourNext").onclick=()=>{
   if(tourI<TOUR.length-1){tourI++;tourRender();}
-  else{tourSetDone();tourClose();igMaybeAuto();}
+  else{tourSetDone();tourClose();}
 };
 document.getElementById("tourPrev").onclick=()=>{ if(tourI>0){tourI--;tourRender();} };
 document.getElementById("tourSkip").onclick=()=>{ tourSetDone();tourClose(); };
