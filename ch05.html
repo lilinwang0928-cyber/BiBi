@@ -3773,6 +3773,144 @@ body.tour-on{overflow:hidden}
   .bibi{bottom:calc(16px + env(safe-area-inset-bottom))}
 }
 
+/* ═══════════════ App 安裝引導 ═══════════════ */
+.igwrap{
+  position:fixed;inset:0;z-index:95;background:rgba(40,44,48,.58);
+  backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;
+  padding:14px;animation:tourFade .3s ease;
+}
+.igwrap[hidden]{display:none}
+@media(min-width:700px){.igwrap{align-items:center}}
+.igbox{
+  width:min(520px,100%);max-height:92vh;overflow:auto;
+  background:var(--card);border:1.5px solid var(--line);border-radius:22px;
+  padding:16px 18px 14px;box-shadow:0 20px 50px rgba(20,25,32,.35);
+  animation:tourUp .38s cubic-bezier(.2,.9,.3,1.2);
+}
+.ig-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ig-brand{
+  flex:1;display:flex;align-items:center;gap:9px;
+  font-family:var(--serif);font-size:15px;color:var(--ink);
+}
+.ig-icon{
+  width:30px;height:30px;border-radius:9px;flex:0 0 auto;
+  background:linear-gradient(160deg,#E4F2EC,#E7EEF9);
+  border:1.5px solid var(--line);position:relative;
+}
+.ig-icon::before{
+  content:"";position:absolute;left:5px;top:3px;right:5px;height:8px;
+  border-radius:5px 5px 2px 2px;background:#2C364C;
+}
+.ig-icon::after{
+  content:"^‿^";position:absolute;left:0;right:0;top:12px;text-align:center;
+  font-family:var(--mono);font-size:8px;color:#8FD2FF;
+}
+.ig-eyebrow{
+  margin:0 0 5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--ink-soft);
+}
+.ig-t{margin:0 0 8px;font-family:var(--serif);font-size:22px;line-height:1.35;color:var(--now)}
+.ig-d{margin:0 0 16px;font-size:13.5px;line-height:1.95;color:var(--ink-soft)}
+
+/* 步驟 */
+.ig-steps{display:flex;flex-direction:column;gap:11px;margin-bottom:16px}
+.igstep{
+  display:flex;align-items:center;gap:12px;
+  background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;
+}
+.igs-no{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  background:var(--now);color:#fff;font-family:var(--mono);font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+}
+.igs-body{flex:1;min-width:0}
+.igs-t{margin:0 0 2px;font-family:var(--serif);font-size:15px}
+.igs-d{margin:0;font-size:12px;line-height:1.7;color:var(--ink-soft)}
+
+/* 手機示意圖 */
+.phone{
+  flex:0 0 auto;position:relative;width:52px;height:82px;border-radius:9px;
+  background:linear-gradient(180deg,#FFFDFA,#F1ECE2);
+  border:2px solid #3A403E;box-shadow:0 2px 6px rgba(58,64,62,.18);
+  display:flex;align-items:flex-end;justify-content:center;overflow:hidden;
+}
+.phone::before{      /* 瀏海 */
+  content:"";position:absolute;left:50%;top:3px;transform:translateX(-50%);
+  width:18px;height:3px;border-radius:99px;background:#3A403E;
+}
+.ph-bar{
+  width:100%;height:16px;background:#E7EEF9;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+}
+.ph-share{
+  font-style:normal;font-size:10px;color:var(--past);
+  animation:igPulse 1.6s ease-in-out infinite;
+}
+@keyframes igPulse{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(-3px);opacity:1}}
+.ph-sheet{width:100%;padding:0 4px 4px;display:flex;flex-direction:column;gap:3px}
+.ph-row{display:block;height:9px;border-radius:3px;background:#E3DED2}
+.ph-row.hi{
+  height:13px;background:var(--now-bg);border:1px solid var(--now);
+  font-style:normal;font-size:5.5px;color:var(--now);
+  display:flex;align-items:center;justify-content:center;
+}
+.ph-home{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:3px;
+  background:linear-gradient(160deg,#DCEAF6,#E9E2F3);
+}
+.ph-app{
+  width:20px;height:20px;border-radius:6px;
+  background:linear-gradient(160deg,#E4F2EC,#E7EEF9);border:1px solid #C8D6CE;position:relative;
+  animation:igPop 1.8s ease-in-out infinite;
+}
+.ph-app::before{content:"";position:absolute;left:3px;top:2px;right:3px;height:5px;border-radius:3px 3px 1px 1px;background:#2C364C}
+@keyframes igPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.ph-label{font-size:5px;color:#3A403E}
+.ph-url{
+  width:44px;margin-bottom:26px;padding:3px 0;text-align:center;
+  font-family:var(--mono);font-size:6px;color:var(--ink-soft);
+  background:var(--card);border:1px solid var(--line);border-radius:5px;
+}
+.ph-btn{
+  margin-bottom:28px;padding:4px 10px;border-radius:99px;
+  background:var(--now);color:#fff;font-size:8px;
+  animation:igPulse 1.6s ease-in-out infinite;
+}
+.ph-dialog{
+  width:44px;margin-bottom:20px;padding:5px 4px;border-radius:6px;
+  background:var(--card);border:1px solid var(--line);
+  font-size:5.5px;line-height:1.5;color:var(--ink-soft);text-align:center;
+}
+.ph-dialog i{
+  display:block;margin-top:3px;font-style:normal;font-size:6px;
+  color:#fff;background:var(--now);border-radius:99px;padding:2px 0;
+}
+.ph-menu{
+  position:absolute;right:4px;top:8px;font-size:12px;color:var(--ink);
+  animation:igPulse 1.6s ease-in-out infinite;
+}
+.ig-acts{display:flex;gap:8px;flex-wrap:wrap}
+.ig-acts .btn{flex:1 1 auto;text-align:center}
+
+/* 站長提示裡的朗讀鈕 */
+.bibi-say{
+  margin-left:8px;width:22px;height:22px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line);background:var(--paper);font-size:10px;
+  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+}
+.bibi-say:hover{border-color:var(--now);background:var(--now-bg)}
+
+/* 有新版本時的提示條 */
+.updbar{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:88;
+  display:flex;align-items:center;gap:10px;
+  background:var(--deep);color:#DDE9F5;border:1.5px solid var(--deep-line);
+  border-radius:999px;padding:8px 10px 8px 16px;box-shadow:0 10px 28px rgba(20,25,32,.35);
+  font-size:13px;animation:tourUp .35s ease;
+}
+.updbar .btn.tiny{background:var(--now);color:#fff;border-color:var(--now)}
+@media(max-width:560px){.updbar{left:10px;right:10px;transform:none;justify-content:space-between}}
+
 </style>
 </head>
 <body>
@@ -4054,7 +4192,7 @@ body.tour-on{overflow:hidden}
   </button>
 </div>
 
-<p class="footline">溯源，塑局<span class="build-ver">v2026.08.21　App</span></p>
+<p class="footline">溯源，塑局<span class="build-ver">v2026.08.23　App</span></p>
 </main>
 
 <div class="toast" id="toast"></div>
@@ -4391,6 +4529,13 @@ function showNextBoard(){
 }
 
 /* ═══════════════ 嗶嗶站長 ═══════════════ */
+let BIBI_SAY_ON=(function(){try{return localStorage.getItem("station_bibi_say")!=="0";}catch(e){return true;}})();
+function bibiSayToggle(){
+  BIBI_SAY_ON=!BIBI_SAY_ON;
+  try{localStorage.setItem("station_bibi_say",BIBI_SAY_ON?"1":"0");}catch(e){}
+  BIBI.say(BIBI_SAY_ON?"嗶！提示語音已開啟。":"嗶！提示語音已關閉，只會顯示文字。","wink",2600);
+  if(!BIBI_SAY_ON&&typeof stopSpeak==="function")stopSpeak();
+}
 const BIBI={
   el:null,face:null,bubble:null,timer:null,idle:null,
   FACES:{idle:"•‿•",happy:"^‿^",sad:">_<",think:"Zzz",wink:">‿◕"},
@@ -4399,7 +4544,13 @@ const BIBI={
     this.face=document.getElementById("bibiFace");
     this.bubble=document.getElementById("bibiBubble");
     const btn=document.getElementById("bibiBtn");
-    if(btn)btn.onclick=()=>this.hint();
+    if(btn){
+      btn.onclick=()=>this.hint();
+      let tm=null;
+      btn.addEventListener("pointerdown",()=>{tm=setTimeout(()=>{tm=null;bibiSayToggle();},650);});
+      ["pointerup","pointerleave","pointercancel"].forEach(ev=>
+        btn.addEventListener(ev,()=>{if(tm){clearTimeout(tm);tm=null;}}));
+    }
     this.rest();
   },
   set(state,ms){
@@ -4445,7 +4596,15 @@ const BIBI={
       if(p&&p.key){ h=p.key.split("。")[0]+"。"; }
     }catch(e){}
     if(!h)h="嗶！先看清楚題目裡的關鍵字，再回頭對照站長廣播。";
-    this.say('<b>站長提示</b><br>嗶！'+h,"wink",6000);
+    this.say('<b>站長提示</b>'+
+      '<button class="bibi-say" id="bibiSayBtn" aria-label="朗讀提示">🔈</button>'+
+      '<br>嗶！'+h,"wink",9000);
+    this.lastHint=h;
+    if(BIBI_SAY_ON&&typeof speakZh==="function")speakZh("嗶！"+h);
+    setTimeout(()=>{
+      const b=document.getElementById("bibiSayBtn");
+      if(b)b.onclick=(ev)=>{ev.stopPropagation();if(typeof speakZh==="function")speakZh("嗶！"+(BIBI.lastHint||h));};
+    },40);
   }
 };
 
