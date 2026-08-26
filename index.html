@@ -2578,6 +2578,7 @@ section.line.ap .stop.on .stop-dot{border-color:#8D958E}
 .lost-a b{color:var(--now);font-family:var(--serif);font-size:14px}
 .lost-from{margin-top:5px;font-family:var(--mono);font-size:10px;color:var(--ink-soft);opacity:.85}
 
+
 /* ═══════════════ 車票收集冊 ═══════════════ */
 /* 乘客 ID 卡 */
 .card.idcard{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
@@ -3911,28 +3912,282 @@ body.tour-on{overflow:hidden}
 .updbar .btn.tiny{background:var(--now);color:#fff;border-color:var(--now)}
 @media(max-width:560px){.updbar{left:10px;right:10px;transform:none;justify-content:space-between}}
 
+
+/* ═══════════════════════════════════════════════
+   新版主介面：App 風格
+   ═══════════════════════════════════════════════ */
+header.top.apphead{padding:0}
+.headrow{display:flex;align-items:center;gap:12px;padding:10px 0}
+.hd-menu{
+  width:38px;height:38px;border:0;background:transparent;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 6px;
+}
+.hd-menu i{display:block;height:2.5px;border-radius:99px;background:var(--ink);transition:transform .2s}
+.hd-menu i:nth-child(2){width:78%}
+.hd-title{flex:1;font-family:var(--serif);font-size:20px;letter-spacing:.06em;color:var(--ink)}
+.hd-bell{
+  position:relative;width:38px;height:38px;border:0;background:transparent;
+  cursor:pointer;font-size:21px;line-height:1;
+}
+.hd-dot{
+  position:absolute;right:5px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:var(--wrong);border:2px solid var(--paper);
+}
+
+/* 側邊選單 */
+.drawer{position:fixed;inset:0;z-index:92;background:rgba(40,44,48,.5);backdrop-filter:blur(3px)}
+.drawer[hidden]{display:none}
+.dw-panel{
+  width:min(300px,84vw);height:100%;overflow:auto;
+  background:var(--card);border-right:1.5px solid var(--line);
+  padding:16px 14px calc(20px + env(safe-area-inset-bottom));
+  animation:dwIn .28s cubic-bezier(.2,.9,.3,1.1);
+  box-shadow:6px 0 30px rgba(20,25,32,.25);
+}
+@keyframes dwIn{from{transform:translateX(-100%)}to{transform:none}}
+.dw-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.dw-mark{flex:1;font-family:var(--serif);font-size:19px;letter-spacing:.06em}
+.dw-sub{margin:0 0 14px;font-size:11.5px;color:var(--ink-soft)}
+.dw-label{
+  margin:14px 0 6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--ink-soft);
+}
+.dw-nav{display:flex;flex-direction:column;gap:3px}
+.dw-item{
+  display:flex;align-items:center;gap:11px;width:100%;text-align:left;text-decoration:none;
+  border:0;background:transparent;cursor:pointer;border-radius:11px;padding:11px 12px;
+  font-family:var(--serif);font-size:15px;color:var(--ink);transition:background .16s;
+}
+.dw-item i{font-style:normal;font-size:17px;width:22px;text-align:center}
+.dw-item:hover{background:var(--paper)}
+.dw-item.on{background:var(--now-bg);color:var(--now)}
+
+/* 連續通勤集點卡 */
+.streak{
+  display:flex;align-items:center;gap:12px;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--line);border-radius:20px;
+  padding:14px 14px 12px;box-shadow:var(--shadow);margin-bottom:14px;
+}
+.stk-flame{
+  flex:0 0 auto;width:52px;height:52px;border-radius:50%;font-size:26px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);filter:grayscale(1);opacity:.45;transition:.25s;
+}
+.stk-flame.lit{filter:none;opacity:1;background:#FFF1E0;animation:flameUp 1.8s ease-in-out infinite}
+@keyframes flameUp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.stk-body{flex:1;min-width:0}
+.stk-t{margin:0 0 9px;font-family:var(--serif);font-size:16px}
+.stk-t b{font-size:22px;color:var(--now)}
+.stk-week{display:flex;gap:5px;align-items:center}
+.stk-day{
+  flex:1;aspect-ratio:1;max-width:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);border:1.5px solid var(--line);
+  font-size:12px;color:var(--ink-soft);
+}
+.stk-day.on{background:var(--now-bg);border-color:var(--now);color:var(--now);font-weight:600}
+.stk-day.today{position:relative}
+.stk-day.today::after{
+  content:"";position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);
+  width:0;height:0;border:4px solid transparent;border-bottom-color:var(--now);
+}
+.stk-gift{
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;font-size:17px;
+  display:flex;align-items:center;justify-content:center;background:var(--paper);
+  border:1.5px solid var(--line);filter:grayscale(.6);opacity:.6;
+}
+.stk-gift.ready{filter:none;opacity:1;background:var(--gold-bg);border-color:var(--gold);animation:flameUp 1.6s ease-in-out infinite}
+.stk-go{flex:0 0 auto;font-size:22px;color:var(--ink-soft);padding:0 2px}
+
+/* 主卡 ＋ 右側選項欄 */
+.herowrap{position:relative;display:flex;gap:0;margin-bottom:14px}
+.herocard{
+  flex:1;min-width:0;background:var(--card);border:1.5px solid var(--line);
+  border-radius:22px;padding:16px 16px 18px;box-shadow:var(--shadow);
+  position:relative;z-index:2;
+}
+.hero-stage{
+  position:relative;height:150px;border-radius:16px;margin-bottom:14px;overflow:hidden;
+  background:linear-gradient(160deg,#EAF4EF,#E7EEF9 60%,#F1EBF8);
+  display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.herocard[data-line="p2"] .hero-stage{background:linear-gradient(160deg,#FBF3E3,#F6EDD9)}
+.herocard[data-line="p3"] .hero-stage{background:linear-gradient(160deg,#EAF1FB,#E2EBF8)}
+.herocard[data-line="p4"] .hero-stage{background:linear-gradient(160deg,#332D52,#4A3F73);}
+.herocard[data-line="p4"] .hero-kicker,.herocard[data-line="p4"] .hero-sub{color:var(--ink)}
+.big-bibi.hero-bibi{width:86px;height:114px;animation:bibiFloat 3.4s ease-in-out infinite}
+.hero-bibi::before{left:6px;top:22px;width:73px;height:81px;border-radius:17px;border-width:2px}
+.hero-bibi .bb-cap{left:2px;top:1px;width:81px;height:27px;border-radius:16px 16px 6px 6px}
+.hero-bibi .bb-cap::after{left:-5px;bottom:-6px;width:91px;height:9px}
+.hero-bibi .bb-cap::before{left:-1px;bottom:1px;width:83px;height:5px}
+.hero-bibi .bb-cap b{font-size:7.5px;top:5px;padding:1px 5px}
+.hero-bibi .bb-screen{left:16px;top:33px;width:54px;height:36px;border-radius:9px}
+.hero-bibi .bb-screen b{font-size:17px}
+.hero-bibi .bb-deco{left:16px;top:75px;width:54px;height:20px;
+  background:
+   radial-gradient(circle at 12% 60%, #E79AB4 0 7px, transparent 7px),
+   radial-gradient(circle at 44% 26%, #8FC3EB 0 6px, transparent 6px),
+   radial-gradient(circle at 72% 66%, #A9D49B 0 7px, transparent 7px),
+   radial-gradient(circle at 92% 24%, #F0C583 0 5px, transparent 5px);}
+.hero-bibi .bb-wheel{left:12px;bottom:0;width:62px;height:16px;border-radius:9px}
+.hero-bibi .bb-wheel::after{left:7px;top:6px;width:48px;height:4px}
+.hero-train{
+  font-size:38px;transform:scaleX(-1);
+  animation:trainRun 3.4s ease-in-out infinite;
+  filter:drop-shadow(0 4px 6px rgba(58,64,62,.2));
+}
+@keyframes trainRun{0%,100%{transform:scaleX(-1) translateX(0)}50%{transform:scaleX(-1) translateX(-8px)}}
+.hero-kicker{margin:0 0 4px;font-family:var(--serif);font-size:22px;color:var(--ink)}
+.hero-kicker sup{font-family:var(--mono);font-size:10px;color:var(--t-fu);margin-left:4px}
+.hero-sub{margin:0 0 14px;font-size:13px;color:var(--ink-soft);line-height:1.7}
+.hero-sub b{color:var(--ink);font-family:var(--serif);font-size:14.5px}
+.hero-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  text-decoration:none;border-radius:16px;padding:15px 18px;
+  background:linear-gradient(180deg,#3E9A80,#256F5C);color:#fff;
+  font-family:var(--serif);font-size:19px;letter-spacing:.06em;
+  box-shadow:0 4px 0 #1C5748,0 8px 18px rgba(37,111,92,.28);
+  transition:transform .12s,box-shadow .12s;
+}
+.hero-cta:active{transform:translateY(3px);box-shadow:0 1px 0 #1C5748,0 4px 10px rgba(37,111,92,.25)}
+.hero-cta span{font-size:21px}
+
+/* 右側選項欄 */
+.railcol{
+  flex:0 0 auto;width:62px;display:flex;flex-direction:column;gap:8px;
+  padding:14px 0 14px 10px;margin-left:-14px;
+}
+.rail-btn{
+  position:relative;width:52px;height:52px;border-radius:16px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  box-shadow:var(--shadow);transition:transform .16s,border-color .16s,background .16s;
+}
+.rail-btn i{font-style:normal;font-size:19px;line-height:1}
+.rail-btn span{font-size:9px;color:var(--ink-soft);letter-spacing:.04em}
+.rail-btn:hover{transform:translateX(-3px)}
+.rail-btn.r1{background:linear-gradient(160deg,#F1EBF8,var(--card))}
+.rail-btn.r2{background:linear-gradient(160deg,#EAF4EF,var(--card))}
+.rail-btn.r3{background:linear-gradient(160deg,#FBF1D8,var(--card))}
+.rail-btn.r4{background:linear-gradient(160deg,#EAF1FB,var(--card))}
+.rail-btn em{
+  position:absolute;right:-3px;top:-3px;min-width:18px;height:18px;border-radius:99px;
+  background:var(--wrong);color:#fff;font-style:normal;font-size:10px;
+  display:flex;align-items:center;justify-content:center;padding:0 4px;
+  border:2px solid var(--paper);
+}
+@media(max-width:420px){
+  .railcol{width:54px}
+  .rail-btn{width:46px;height:46px;border-radius:14px}
+  .rail-btn i{font-size:17px}
+  .rail-btn span{font-size:8px}
+}
+
+/* 藍色橫幅 */
+.bluebar{
+  display:flex;align-items:center;gap:12px;width:100%;cursor:pointer;text-align:left;
+  border:0;border-radius:20px;padding:16px 18px;margin-bottom:14px;
+  background:linear-gradient(120deg,#5C7AB0,#7793C2);
+  box-shadow:0 6px 18px rgba(92,122,176,.28);
+}
+.bb-l{flex:1;min-width:0}
+.bb-t{margin:0 0 4px;font-family:var(--serif);font-size:17px;color:#fff}
+.bb-d{margin:0;font-size:12.5px;color:rgba(255,255,255,.86);line-height:1.65}
+.bb-d b{color:#fff}
+.bb-r{flex:0 0 auto;position:relative;width:92px;height:44px}
+.bb-pct{
+  position:absolute;left:0;top:-4px;z-index:2;
+  background:rgba(30,38,48,.55);color:#fff;border-radius:8px;
+  font-family:var(--mono);font-size:11px;padding:2px 7px;
+}
+.bb-spark{position:absolute;inset:0;width:100%;height:100%}
+
+/* 學習資訊卡 */
+.card.infocard{padding:16px}
+.ic-head{display:flex;align-items:center;margin-bottom:10px}
+.ic-t{margin:0;flex:1;font-family:var(--serif);font-size:17px}
+.ic-go{border:0;background:transparent;font-size:20px;color:var(--ink-soft);cursor:pointer}
+.ic-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.ic-legend span{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--ink-soft)}
+.dotc{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dotc.p1{background:#4FAF92}.dotc.p2{background:#C79A4F}
+.dotc.p3{background:#6E93CC}.dotc.p4{background:#9A7CC0}
+.ic-bars{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.ic-row{display:flex;align-items:center;gap:9px}
+.ic-lb{flex:0 0 62px;font-size:12px;color:var(--ink-soft)}
+.ic-bar{flex:1;height:9px;border-radius:99px;background:var(--paper);overflow:hidden}
+.ic-bar i{display:block;height:100%;border-radius:99px;transition:width .5s ease}
+.ic-bar i.p1{background:#4FAF92}.ic-bar i.p2{background:#C79A4F}
+.ic-bar i.p3{background:#6E93CC}.ic-bar i.p4{background:#9A7CC0}
+.ic-pc{flex:0 0 34px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.ic-nums{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:11px}
+.ic-nums span{flex:1 1 auto;text-align:center;font-size:11px;color:var(--ink-soft)}
+.ic-nums b{display:block;font-family:var(--serif);font-size:19px;color:var(--now)}
+
+/* 底部分頁列 */
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:flex;background:rgba(255,253,250,.96);backdrop-filter:blur(8px);
+  border-top:1.5px solid var(--line);
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.tb{
+  flex:1;border:0;background:transparent;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;
+  color:var(--ink-soft);transition:color .16s;
+}
+.tb i{font-style:normal;font-size:20px;line-height:1;filter:grayscale(1);opacity:.6;transition:.16s}
+.tb span{font-size:10.5px}
+.tb.on{color:var(--now)}
+.tb.on i{filter:none;opacity:1;transform:translateY(-1px)}
+/* 讓出底部空間 */
+main.wrap{padding-bottom:104px}
+.bibi{bottom:calc(78px + env(safe-area-inset-bottom))}
+@media (display-mode: standalone){
+  main.wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+}
+
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <div class="brandline">
-      <span class="brandmark">英文轉運站</span>
-      <span class="brandsub">國中英語文法　二十章 ＋ 附錄</span>
-    </div>
-    <nav class="pills" id="nav">
-      <button class="pill" data-target="sec-hub" aria-current="true">總覽</button>
-      <button class="pill" data-target="sec-route">路線圖</button>
-      <button class="pill" data-target="sec-bibi">認識站長</button>
-      <button class="pill" data-target="sec-dash">乘車紀錄</button>
-      <button class="pill" data-target="sec-album">收集冊</button>
-      <button class="pill" data-target="sec-lost">失物招領</button>
-      <button class="pill" data-target="sec-map">時態全景</button>
-      <button class="pill" data-target="sec-toc">目次</button>
-    </nav>
+<header class="top apphead">
+  <div class="wrap headrow">
+    <button class="hd-menu" id="drawerBtn" aria-label="開啟選單"><i></i><i></i><i></i></button>
+    <span class="hd-title">英文轉運站</span>
+    <button class="hd-bell" id="bellBtn" aria-label="通知">🔔<span class="hd-dot" id="bellDot" hidden></span></button>
   </div>
 </header>
+
+<!-- 側邊選單 -->
+<div class="drawer" id="drawer" hidden>
+  <div class="dw-panel">
+    <div class="dw-head">
+      <span class="dw-mark">英文轉運站</span>
+      <button class="tour-x" id="drawerClose" aria-label="關閉">✕</button>
+    </div>
+    <p class="dw-sub">國中英語文法　二十站 ＋ 工具間</p>
+    <nav class="dw-nav" id="drawerNav">
+      <button class="dw-item" data-target="sec-hub"><i>🏠</i>主介面</button>
+      <button class="dw-item" data-target="sec-route"><i>🗺️</i>轉運路線圖</button>
+      <button class="dw-item" data-target="sec-bibi"><i>🎩</i>認識站長</button>
+      <button class="dw-item" data-target="sec-dash"><i>📊</i>乘車紀錄</button>
+      <button class="dw-item" data-target="sec-album"><i>🎫</i>車票收集冊</button>
+      <button class="dw-item" data-target="sec-lost"><i>🔧</i>失物招領處</button>
+      <button class="dw-item" data-target="sec-map"><i>⏳</i>時態全景</button>
+      <button class="dw-item" data-target="sec-toc"><i>📚</i>全站目次</button>
+      <p class="dw-label">路線總複習</p>
+      <a class="dw-item" href="review.html"><i>🟢</i>時態線</a>
+      <a class="dw-item" href="review2.html"><i>🟡</i>動詞進階線</a>
+      <a class="dw-item" href="review3.html"><i>🔵</i>詞性修飾線</a>
+      <a class="dw-item" href="review4.html"><i>🟣</i>長句子句線</a>
+      <p class="dw-label">其他</p>
+      <button class="dw-item" id="dwTour"><i>🚉</i>重看新手導覽</button>
+      <button class="dw-item" id="dwInstall"><i>📱</i>安裝到手機</button>
+      <button class="dw-item" id="dwReset"><i>🧹</i>清除乘車紀錄</button>
+    </nav>
+  </div>
+</div>
+
 
 <main class="wrap">
 <!-- ═══ 站長廣播 LED 看板 ═══ -->
@@ -3953,25 +4208,86 @@ body.tour-on{overflow:hidden}
 
 <!-- ═══ 總覽 ═══ -->
 <section class="view on" id="sec-hub">
-  <p class="eyebrow">Grammar Express · 文法直達車</p>
-  <h1>國中英文轉運站<br>文法直達車</h1>
-  <p class="motto">上錯車沒關係，來轉運站找回你的英文語感。</p>
-  <p class="lead">四條路線、二十座車站，外加一間工具間。每一站的行程都一樣：站長先廣播規則，接著看十處沿途風景、進候車練習室練基本功，最後通過出站驗票。<br>紀錄存在你自己的裝置上，不需登入也不會上傳；想從哪一站上車都可以。</p>
 
-  <div class="card">
-    <div class="bar"><i id="hubBar"></i></div>
-    <div class="meta" id="hubMeta">讀取進度中…</div>
+  <!-- 連續通勤集點卡 -->
+  <div class="streak" id="streakCard">
+    <div class="stk-flame" id="stkFlame">🔥</div>
+    <div class="stk-body">
+      <p class="stk-t">連續通勤 <b id="stkDays">0</b> 天</p>
+      <div class="stk-week" id="stkWeek"></div>
+    </div>
+    <span class="stk-go" id="stkGo">›</span>
   </div>
 
+  <!-- 主卡：站長 ＋ 今日發車 ＋ 右側選項欄 -->
+  <div class="herowrap">
+    <div class="herocard">
+      <div class="hero-stage">
+        <span class="big-bibi hero-bibi">
+          <i class="bb-cap"><b>站長</b></i>
+          <i class="bb-screen"><b id="homeFace">^‿^</b></i>
+          <i class="bb-deco"></i>
+          <i class="bb-wheel"></i>
+        </span>
+        <span class="hero-train">🚄</span>
+      </div>
+      <p class="hero-kicker">今日班次 <sup>beta</sup></p>
+      <p class="hero-sub" id="heroSub">路線 ｜ 讀取中…</p>
+      <a class="hero-cta" id="heroGo" href="#"><span>🎫</span>今日發車</a>
+    </div>
+
+    <!-- 右側選項欄 -->
+    <div class="railcol" id="railCol">
+      <button class="rail-btn r1" data-target="sec-route" aria-label="轉運路線圖"><i>🗺️</i><span>路線</span></button>
+      <button class="rail-btn r2" data-target="sec-album" aria-label="車票收集冊"><i>🎫</i><span>車票</span></button>
+      <button class="rail-btn r3" data-target="sec-lost" aria-label="失物招領處"><i>🔧</i><span>補票</span><em id="railLost" hidden>0</em></button>
+      <button class="rail-btn r4" data-target="sec-dash" aria-label="乘車紀錄"><i>⚙️</i><span>紀錄</span></button>
+    </div>
+  </div>
+
+  <!-- 戰鬥力橫幅 -->
+  <button class="bluebar" id="powerBar">
+    <div class="bb-l">
+      <p class="bb-t">我的文法戰鬥力如何？</p>
+      <p class="bb-d" id="powerD">再走完幾處風景，看看你的等級</p>
+    </div>
+    <div class="bb-r">
+      <span class="bb-pct" id="powerPct">0%</span>
+      <svg class="bb-spark" viewBox="0 0 90 40" aria-hidden="true">
+        <path id="powerPath" d="M2 34 C 22 34, 30 20, 46 20 S 70 8, 88 6" fill="none"
+              stroke="rgba(255,255,255,.55)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle id="powerDotC" cx="88" cy="6" r="4.5" fill="#fff"/>
+      </svg>
+    </div>
+  </button>
+
+  <!-- 安裝提示 -->
   <div class="card install" id="installCard" hidden>
     <div class="ins-ic">📱</div>
     <div class="ins-body">
       <p class="ins-t">把轉運站裝到手機主畫面</p>
-      <p class="ins-d" id="insD">安裝後沒有網路也能用，開起來像一般的 App。點右邊看你的手機該怎麼裝。</p>
+      <p class="ins-d" id="insD">安裝後沒有網路也能用，開起來像一般的 App。</p>
     </div>
     <button class="btn solid" id="installBtn">看安裝步驟</button>
   </div>
 
+  <!-- 學習資訊 -->
+  <div class="card infocard">
+    <div class="ic-head">
+      <p class="ic-t">學習資訊</p>
+      <button class="ic-go" data-target="sec-dash">›</button>
+    </div>
+    <div class="ic-legend">
+      <span><i class="dotc p1"></i>時態線</span>
+      <span><i class="dotc p2"></i>動詞進階</span>
+      <span><i class="dotc p3"></i>詞性修飾</span>
+      <span><i class="dotc p4"></i>長句子句</span>
+    </div>
+    <div class="ic-bars" id="icBars"></div>
+    <div class="ic-nums" id="icNums"></div>
+  </div>
+
+  <!-- 乘車卡 -->
   <div class="card gate" id="gateCard">
     <div class="gate-left">
       <p class="gate-t">學生乘車卡　<span class="gate-coin" id="gateCoin">乘車金 0</span></p>
@@ -3987,11 +4303,14 @@ body.tour-on{overflow:hidden}
   </div>
 
   <h2>今天從哪一站上車</h2>
+  <div class="card">
+    <div class="bar"><i id="hubBar"></i></div>
+    <div class="meta" id="hubMeta">讀取進度中…</div>
+  </div>
   <div class="hubgrid" id="hubGrid"></div>
 
-  <h2>使用方式</h2>
   <div class="card">
-    <p style="margin:0 0 10px;font-size:14.5px">手機或平板開任一站即可上車。每一站的行程都一樣：<b>站長廣播</b>先講規則、<b>沿途風景</b>看十處實景、<b>候車練習室</b>練基本功、<b>月台分流</b>做判斷，最後通過<b>出站驗票</b>才算抵達。</p>
+    <p style="margin:0 0 10px;font-size:14.5px">每一站的行程都一樣：<b>站長廣播</b>先講規則、<b>沿途風景</b>看十處實景、<b>候車練習室</b>練基本功、<b>月台分流</b>做判斷，最後通過<b>出站驗票</b>才算抵達。</p>
     <div class="toolbar"><button class="btn" id="resetAll">清除全線乘車紀錄</button></div>
   </div>
 </section>
@@ -4286,8 +4605,15 @@ body.tour-on{overflow:hidden}
   <p class="meta" style="margin:4px 2px 0">＊對應的版本內容，以各家版本實際的冊次與課次為主。</p>
 </section>
 
-<p class="footline">溯源，塑局<span class="build-ver">v2026.08.23　App</span></p>
+<p class="footline">溯源，塑局<span class="build-ver">v2026.08.24　App</span></p>
 </main>
+<nav class="tabbar" id="tabBar">
+  <button class="tb" data-target="sec-hub"><i>🏠</i><span>主介面</span></button>
+  <button class="tb" data-target="sec-dash"><i>📊</i><span>學習統計</span></button>
+  <button class="tb" data-target="sec-route"><i>🗺️</i><span>路線圖</span></button>
+  <button class="tb" data-target="sec-album"><i>👑</i><span>會員</span></button>
+</nav>
+
 
 <!-- ═══ App 安裝引導 ═══ -->
 <div class="igwrap" id="igWrap" hidden>
@@ -4457,6 +4783,10 @@ const PARTS=[
 function go(id){
   document.querySelectorAll("section.view").forEach(s=>s.classList.toggle("on",s.id===id));
   document.querySelectorAll("#nav .pill").forEach(p=>p.setAttribute("aria-current",p.dataset.target===id?"true":"false"));
+  document.querySelectorAll("#tabBar .tb").forEach(b=>b.classList.toggle("on",b.dataset.target===id));
+  document.querySelectorAll("#drawerNav .dw-item").forEach(b=>b.classList.toggle("on",b.dataset&&b.dataset.target===id));
+  document.querySelectorAll("#railCol .rail-btn").forEach(b=>b.classList.toggle("on",b.dataset.target===id));
+  closeDrawer();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 document.addEventListener("click",e=>{
@@ -5030,6 +5360,141 @@ document.getElementById("claimBody").addEventListener("click",e=>{
   fb.innerHTML=(+b.dataset.si===ans)?"<b>答對了。</b>":"<b>再看一次。</b>";
 });
 
+
+
+/* ═══════════════ 新版主介面 ═══════════════ */
+const WD=["日","一","二","三","四","五","六"];
+
+function openDrawer(){
+  const d=document.getElementById("drawer");
+  if(!d)return;d.hidden=false;
+  if(document.body&&document.body.classList)document.body.classList.add("tour-on");
+}
+function closeDrawer(){
+  const d=document.getElementById("drawer");
+  if(!d||d.hidden)return;d.hidden=true;
+  if(document.body&&document.body.classList)document.body.classList.remove("tour-on");
+}
+(function(){
+  const b=document.getElementById("drawerBtn");if(b)b.onclick=openDrawer;
+  const c=document.getElementById("drawerClose");if(c)c.onclick=closeDrawer;
+  const d=document.getElementById("drawer");
+  if(d)d.addEventListener("click",e=>{ if(e.target===d)closeDrawer(); });
+  const t=document.getElementById("dwTour");if(t)t.onclick=()=>{closeDrawer();tourOpen(true);};
+  const i=document.getElementById("dwInstall");if(i)i.onclick=()=>{closeDrawer();igOpen();};
+  const r=document.getElementById("dwReset");if(r)r.onclick=()=>{closeDrawer();document.getElementById("resetAll").click();};
+})();
+
+/* 連續通勤集點卡：本週七格 */
+function renderStreak(){
+  const g=gateRead(), today=new Date(), dow=today.getDay();
+  document.getElementById("stkDays").textContent=g.streak||0;
+  const flame=document.getElementById("stkFlame");
+  if(flame)flame.classList.toggle("lit",(g.streak||0)>0&&g.last===((d)=>d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate())(today));
+  let html="";
+  for(let k=6;k>=1;k--){
+    const d=new Date(Date.now()-k*86400000);
+    const key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    const on=(g.streak||0)>=k&&g.last;
+    html+='<span class="stk-day'+(on?" on":"")+'">'+WD[d.getDay()]+'</span>';
+  }
+  const tk=today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+  html+='<span class="stk-day today'+(g.last===tk?" on":"")+'">'+WD[dow]+'</span>';
+  html+='<span class="stk-gift'+((g.streak||0)>=7?" ready":"")+'">🎁</span>';
+  document.getElementById("stkWeek").innerHTML=html;
+}
+document.getElementById("stkGo").onclick=()=>go("sec-dash");
+document.getElementById("streakCard").onclick=e=>{ if(!e.target.closest(".stk-gift"))go("sec-dash"); };
+
+/* 主卡：下一站與今日發車 */
+const HOME_ORDER=[1,2,3,4,10,11,12,13,14,5,6,7,8,9,16,17,18,20,15,19];
+function nextStation(){
+  const pass=passRead();
+  for(const n of HOME_ORDER){
+    const c=CHAPTERS.find(x=>x.n===n);
+    if(!c||!c.ready)continue;
+    if(!pass[n])return c;
+  }
+  return CHAPTERS.find(x=>x.n===19)||CHAPTERS[0];
+}
+function renderHero(){
+  const c=nextStation();
+  const k=LINE_OF[c.n]||"ap";
+  const href=(c.no?"appendix.html":"ch"+String(c.n).padStart(2,"0")+".html");
+  const st=chapterState(c.n), done=st?st.done:0;
+  document.getElementById("heroSub").innerHTML=
+    LINE_ZH[k]+' ｜ <b>CH.'+String(c.n).padStart(2,"0")+'　'+c.t.replace("時態：","")+'</b>'+
+    (done?('　·　已看 '+done+' / '+(c.units||10)+' 景'):"");
+  const go=document.getElementById("heroGo");
+  go.href=href;
+  go.querySelector("span").textContent=LANDMARK[c.n]||"🎫";
+  document.querySelector(".herocard").dataset.line=k;
+}
+
+/* 戰鬥力橫幅 */
+function renderPower(){
+  let scenes=0,total=0;
+  CHAPTERS.forEach(c=>{
+    if(!c.ready)return;
+    const st=chapterState(c.n);
+    scenes+=st?st.done:0;total+=(c.units||10);
+  });
+  const pass=Object.keys(passRead()).length;
+  const pct=total?Math.round((scenes*0.7+pass*0.3*10)/total*100):0;
+  const P=Math.max(0,Math.min(100,pct));
+  document.getElementById("powerPct").textContent=P+"%";
+  const LV=[[0,"實習乘務員"],[15,"隨車服務員"],[35,"正式駕駛"],[60,"資深列車長"],[85,"特級站長"]];
+  let name=LV[0][1],next=null;
+  LV.forEach(([v,n],i)=>{if(P>=v){name=n;next=LV[i+1]||null;}});
+  document.getElementById("powerD").innerHTML=
+    "目前 <b>"+name+"</b>"+(next?("　·　再 "+(next[0]-P)+"% 晉升「"+next[1]+"」"):"　·　已達最高等級");
+  const dot=document.getElementById("powerDotC");
+  if(dot){const x=6+P*0.82;dot.setAttribute("cx",x);dot.setAttribute("cy",34-P*0.28);}
+}
+document.getElementById("powerBar").onclick=()=>go("sec-dash");
+
+/* 學習資訊：四線進度 */
+function renderInfo(){
+  const pass=passRead();
+  const rows=[["p1","時態線"],["p2","動詞進階"],["p3","詞性修飾"],["p4","長句子句"]];
+  let bars="",nums="";
+  rows.forEach(([k,label])=>{
+    const chs=CHAPTERS.filter(c=>(LINE_OF[c.n]||"ap")===k);
+    const cleared=chs.filter(c=>pass[c.n]).length;
+    const pct=chs.length?Math.round(cleared/chs.length*100):0;
+    bars+='<div class="ic-row"><span class="ic-lb">'+label+'</span>'+
+      '<span class="ic-bar"><i class="'+k+'" style="width:'+pct+'%"></i></span>'+
+      '<span class="ic-pc">'+cleared+'/'+chs.length+'</span></div>';
+  });
+  document.getElementById("icBars").innerHTML=bars;
+  const e=jread(EXP_KEY,{exp:0,fixed:0}), lost=lostRead().length;
+  document.getElementById("icNums").innerHTML=
+    '<span><b>'+Object.keys(pass).length+'</b>站通過</span>'+
+    '<span><b>'+(e.exp||0)+'</b>經驗值</span>'+
+    '<span><b>'+(e.fixed||0)+'</b>張修復</span>'+
+    '<span><b>'+lost+'</b>件待認領</span>';
+  const rl=document.getElementById("railLost");
+  if(rl){rl.hidden=!lost;rl.textContent=lost>99?"99+":lost;}
+  const bd=document.getElementById("bellDot");
+  if(bd)bd.hidden=!lost;
+}
+document.getElementById("bellBtn").onclick=()=>{
+  const lost=lostRead().length;
+  if(lost)go("sec-lost");
+  else if(typeof PA!=="undefined")PA.show("嗶！目前沒有待處理的通知，架上乾乾淨淨。","Beep! No pending notices. Everything is in order.","通知　Notice","ok");
+};
+
+/* 右側選項欄與底部分頁列 */
+document.getElementById("railCol").addEventListener("click",e=>{
+  const b=e.target.closest(".rail-btn");if(b)go(b.dataset.target);
+});
+document.getElementById("tabBar").addEventListener("click",e=>{
+  const b=e.target.closest(".tb");if(b)go(b.dataset.target);
+});
+
+function renderHome(){
+  renderStreak();renderHero();renderPower();renderInfo();
+}
 
 
 /* ═══════════════ 車票收集冊 ═══════════════ */
@@ -6051,6 +6516,7 @@ function updateHub(){
     "全線 "+stations+" 站　已抵達 "+cleared+" 站　沿途風景 "+done+" / "+total+"　行程完成 "+pct+"%"+
     (rv.final!=null?"　·　跨線總複習最佳成績 "+rv.final+" / 15":"");
   renderHubGrid();
+  try{renderHome();}catch(e){}
 }
 document.getElementById("resetAll").onclick=()=>{
   try{
