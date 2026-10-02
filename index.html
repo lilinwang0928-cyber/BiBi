@@ -2,7 +2,8 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="國中英文轉運站：文法直達車｜嗶！歡迎搭乘，這一站由我為您服務。 二十站文法、四條路線總複習，嗶嗶站長全程語音導覽，裝到手機離線也能用。">
 <title>國中英文轉運站：文法直達車</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#256F5C">
@@ -2987,7 +2988,7 @@ section.line.ap .stop.on .stop-dot{border-color:#8D958E}
 /* 週報 */
 .card.weekly{padding:16px}
 .weekly-grid{display:grid;gap:14px;grid-template-columns:1fr;align-items:center}
-@media(min-width:700px){.weekly-grid{grid-template-columns:280px 1fr}}
+@media(min-width:700px){.weekly-grid{grid-template-columns:minmax(300px,380px) 1fr}}
 #radarCv{width:100%;max-width:300px;height:auto;margin:0 auto;display:block}
 .wk-t{margin:0 0 8px;font-family:var(--serif);font-size:17px}
 .wk-d{margin:0;font-size:13.5px;line-height:1.95;color:var(--ink-soft)}
@@ -3045,7 +3046,7 @@ section.line.ap .stop.on .stop-dot{border-color:#8D958E}
 }
 
 /* 雷達圖不再被裁切 */
-#radarCv{max-width:340px}
+#radarCv{max-width:380px}
 .card.weekly{overflow:hidden}
 
 /* ═══ 作用中分頁鈕：改為薄荷綠，不再是黑底 ═══ */
@@ -4146,9 +4147,132 @@ main.wrap{padding-bottom:104px}
   main.wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
 }
 
+
+
+
+/* ===OPT3-START=== */
+/* ═══════════════════════════════════════════════════════════════
+   優化層 III　Comfort Layer
+   ① 色彩：全線軌道色補到 WCAG AA　② 排版：流動字級與閱讀行寬
+   ③ 節奏：卡片間距統一　④ 體感：觸控面積與焦點
+   此層置於檔尾，為色彩的唯一權威來源
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ───── ① 色彩總表 ───── */
+:root{
+  /* 承載文字的主色：在白卡、米紙、自家淺底上皆 ≥4.5:1 */
+  --past:#4A67A0;  --past-bg:#E8EDF7;   /* 寶寶藍（加深至可讀） */
+  --gold:#856731;  --gold-bg:#F7EFE0;   /* 奶茶金（原 #96742F 僅 4.28） */
+
+  /* 裝飾用粉彩：只做色塊、圓點、軌道條、圖表，不承載文字 */
+  --now-soft:#4FAF92;
+  --gold-soft:#C79A4F;
+  --past-soft:#6E93CC;
+  --plum-soft:#9A7CC0;
+  --rose-soft:#D48AA0;
+  --gray-soft:#A8B0AB;
+
+  /* 間距級距：卡片與段落共用同一套節奏 */
+  --sp-1:6px; --sp-2:10px; --sp-3:14px; --sp-4:20px; --sp-5:28px; --sp-6:38px;
+
+  /* 圓角級距 */
+  --r-xs:8px; --r-sm:11px; --r-md:14px; --r-lg:18px; --r-xl:22px;
+}
+
+/* 金線家族一併加深：底色維持粉彩，文字補足對比 */
+:root{
+  --t-pf:#856731;  --p-means:#856731; --n-count:#856731; --j-num:#856731;
+  --v-mann:#856731; --c-mod:#856731;  --g-ving:#856731;  --e-ing:#856731;
+  --s-sep:#856731;  --x-cost:#856731; --n-agree:#856731; --q-hext:#856731;
+  --j-corr:#856731; --r-cwhat:#856731; --o-excl:#856731; --y-swish:#856731;
+  --k-perf:#856731;
+}
+/* 散落在各處的硬寫金色，一併收斂 */
+.sc.s3,.sc.t3{color:#856731}
+.sc.s4{color:#8A5F3C}
+section.line.p2 .line-rv{color:#856731}
+.card.gate.gold .gate-stamp{color:#7E6029}
+.goldticket span{color:#6F561F}
+
+/* 路線辨識色統一由 soft 代號供應，不再各寫一次 */
+.dotc.p1,.ic-bar i.p1{background:var(--now-soft)}
+.dotc.p2,.ic-bar i.p2{background:var(--gold-soft)}
+.dotc.p3,.ic-bar i.p3{background:var(--past-soft)}
+.dotc.p4,.ic-bar i.p4{background:var(--plum-soft)}
+
+/* ───── ② 流動字級：手機不擠、平板不小 ───── */
+.view>h1{font-size:clamp(24px,5.6vw,32px);line-height:1.34;text-wrap:balance}
+.view>h2,h2{font-size:clamp(18px,3.9vw,22px);line-height:1.45;text-wrap:balance}
+h3{font-size:clamp(14.5px,3.2vw,16px);line-height:1.5;text-wrap:balance}
+.eyebrow{font-size:clamp(10px,2.4vw,11.5px)}
+
+/* 中英文各自的舒適行高：中文需要更鬆的行距 */
+.sent-en,.rel-e,.trap-e{line-height:1.9}
+.zh,.lead,p.motto,.vs-a,.lens-d,.rel-d,.trap-d{line-height:2}
+
+/* ───── ③ 閱讀行寬：一行 60～70 字元最好讀 ───── */
+.sent-en{max-width:36em}
+.zh{max-width:34em}
+.view>.lead,p.motto,.q-stem,.exp{max-width:40em}
+.opt{max-width:44em}
+
+/* 標點不落行首、長英文單字可斷 */
+.sent-en,.zh,.q-stem,.opt,.exp,.lead{
+  overflow-wrap:break-word;line-break:strict;text-wrap:pretty;
+}
+
+/* ───── ④ 垂直節奏：卡片與標題共用級距 ───── */
+.card{margin-bottom:var(--sp-3);border-radius:var(--r-lg)}
+.view>h2{margin:var(--sp-5) 0 var(--sp-2)}
+.view>h2:first-of-type{margin-top:var(--sp-4)}
+.rails{margin:var(--sp-1) 0 var(--sp-4)}
+.sent{margin-bottom:var(--sp-2)}
+.q{padding:var(--sp-4) 0 var(--sp-1)}
+/* 錨點不被吸頂的頁首遮住 */
+.view,h2,h3,.q,.card{scroll-margin-top:92px}
+
+/* ───── ⑤ 觸控面積：小圖示鈕補到 44px 可按範圍 ───── */
+.spk,.ic-go,.pa-mini,.pa-x{position:relative}
+.spk::after,.ic-go::after,.pa-mini::after,.pa-x::after{
+  content:"";position:absolute;left:50%;top:50%;
+  width:44px;height:44px;transform:translate(-50%,-50%);
+}
+.pill{padding:8px 15px}
+
+/* ───── ⑥ 焦點與選取：鍵盤與輔助工具看得見 ───── */
+.skiplink{
+  position:absolute;left:12px;top:-56px;z-index:200;
+  background:var(--now);color:#fff;text-decoration:none;
+  font-size:13px;padding:9px 15px;border-radius:0 0 var(--r-sm) var(--r-sm);
+  transition:top .18s ease;
+}
+.skiplink:focus{top:0}
+#mainContent:focus{outline:none}
+
+:where(a,button,summary,input,select,[tabindex]):focus-visible{
+  outline:3px solid rgba(37,111,92,.55);outline-offset:2px;border-radius:var(--r-xs);
+}
+::selection{background:rgba(37,111,92,.18);color:var(--ink)}
+
+/* ───── ⑦ 寬螢幕：資訊不再擠成一條細帶 ───── */
+@media(min-width:1040px){
+  .wrap{max-width:960px}
+  #tocList{display:grid;grid-template-columns:1fr 1fr;column-gap:30px}
+  .view>h1{font-size:34px}
+}
+
+/* ───── ⑧ 系統偏好更高對比時，線條與次要文字再加深 ───── */
+@media (prefers-contrast:more){
+  :root{--line:#CFC7B8;--ink-soft:#555D59}
+  .card{border-width:1.5px}
+  .opt{border-width:1.5px}
+}
+/* ===OPT3-END=== */
 </style>
 </head>
 <body>
+<a class="skiplink" href="#mainContent">跳至主要內容</a>
+
 
 <header class="top apphead">
   <div class="wrap headrow">
@@ -4189,7 +4313,7 @@ main.wrap{padding-bottom:104px}
 </div>
 
 
-<main class="wrap">
+<main class="wrap" id="mainContent" tabindex="-1">
 <!-- ═══ 站長廣播 LED 看板 ═══ -->
 <div class="pa" id="pa" hidden>
   <div class="pa-bar">
@@ -4473,7 +4597,7 @@ main.wrap{padding-bottom:104px}
   <h2>行車紀錄週報</h2>
   <div class="card weekly">
     <div class="weekly-grid">
-      <canvas id="radarCv" width="420" height="420"></canvas>
+      <canvas id="radarCv" width="440" height="360" role="img" aria-label="四大路線熟練度雷達圖"></canvas>
       <div class="weekly-text">
         <p class="wk-t">四大路線熟練度</p>
         <p class="wk-d" id="weeklySay">讀取中…</p>
@@ -4605,7 +4729,7 @@ main.wrap{padding-bottom:104px}
   <p class="meta" style="margin:4px 2px 0">＊對應的版本內容，以各家版本實際的冊次與課次為主。</p>
 </section>
 
-<p class="footline">溯源，塑局<span class="build-ver">v2026.08.24　App</span></p>
+<p class="footline">溯源，塑局<span class="build-ver">v2026.10.02　App</span></p>
 </main>
 <nav class="tabbar" id="tabBar">
   <button class="tb" data-target="sec-hub"><i>🏠</i><span>主介面</span></button>
@@ -6036,61 +6160,98 @@ function renderWeekly(){
   if(!cv||!cv.getContext)return;
   const ctx=cv.getContext("2d");
   if(!ctx)return;
-  const W=420,H=420,cx=W/2,cy=H/2,R=104;
+
+  /* 版面：寬 > 高，左右留給路線名稱，不再把圖縮在中間一小塊 */
+  const W=440,H=360,cx=W/2,cy=178,R=116;
+  const dpr=Math.min(3,(window.devicePixelRatio||1));
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+  cv.style.width="100%";cv.style.height="auto";
+  if(ctx.setTransform)ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,W,H);
+
+  const SOFT=["#4FAF92","#C79A4F","#6E93CC","#9A7CC0"];
   const vals=RADAR.map(r=>lineScore(r[0]));
-  // 網格
-  ctx.strokeStyle="rgba(120,128,124,.28)";ctx.lineWidth=1.4;
-  for(let g=1;g<=4;g++){
+  const empty=vals.every(v=>v<=0.13);
+  const pt=(i,r)=>{const a=-Math.PI/2+i*Math.PI/2;return[cx+Math.cos(a)*r,cy+Math.sin(a)*r];};
+
+  /* ── 底層刻度：四圈 25% ── */
+  for(let g=4;g>=1;g--){
     ctx.beginPath();
-    for(let i=0;i<4;i++){
-      const a=-Math.PI/2+i*Math.PI/2, r=R*g/4;
-      const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r;
-      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-    }
-    ctx.closePath();ctx.stroke();
+    for(let i=0;i<4;i++){const[x,y]=pt(i,R*g/4);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+    ctx.closePath();
+    ctx.fillStyle=g%2?"rgba(37,111,92,.030)":"rgba(37,111,92,.055)";ctx.fill();
+    ctx.strokeStyle=g===4?"rgba(105,114,109,.46)":"rgba(105,114,109,.22)";
+    ctx.lineWidth=g===4?1.6:1;ctx.stroke();
   }
-  ctx.beginPath();
-  for(let i=0;i<4;i++){
-    const a=-Math.PI/2+i*Math.PI/2;
-    ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);
+  ctx.strokeStyle="rgba(105,114,109,.22)";ctx.lineWidth=1;
+  for(let i=0;i<4;i++){const[x,y]=pt(i,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();}
+  /* 刻度數字沿右上斜線標示 */
+  ctx.fillStyle="rgba(105,114,109,.75)";ctx.font="500 9.5px ui-monospace,monospace";
+  ctx.textAlign="left";ctx.textBaseline="middle";
+  [[2,"50"],[4,"100"]].forEach(([g,t])=>ctx.fillText(t+"%",cx+5,cy-R*g/4+1));
+
+  /* ── 熟練度面積 ── */
+  if(!empty){
+    const grd=ctx.createRadialGradient(cx,cy,6,cx,cy,R);
+    grd.addColorStop(0,"rgba(79,175,146,.46)");
+    grd.addColorStop(1,"rgba(154,124,192,.30)");
+    ctx.beginPath();
+    vals.forEach((v,i)=>{const[x,y]=pt(i,R*v);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+    ctx.closePath();ctx.fillStyle=grd;ctx.fill();
+    ctx.strokeStyle="rgba(37,111,92,.80)";ctx.lineWidth=2.6;
+    ctx.lineJoin="round";ctx.stroke();
+    vals.forEach((v,i)=>{
+      const[x,y]=pt(i,R*v);
+      ctx.beginPath();ctx.arc(x,y,5.4,0,7);
+      ctx.fillStyle=SOFT[i];ctx.strokeStyle="#FFFDFA";ctx.lineWidth=2.4;
+      ctx.fill();ctx.stroke();
+    });
+  }else{
+    ctx.save();ctx.setLineDash([5,5]);
+    ctx.beginPath();
+    for(let i=0;i<4;i++){const[x,y]=pt(i,R*0.4);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+    ctx.closePath();ctx.strokeStyle="rgba(105,114,109,.5)";ctx.lineWidth=2;ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle="#69726D";ctx.font="500 13px system-ui,sans-serif";
+    ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.fillText("還沒有行車資料",cx,cy-7);
+    ctx.font="500 11.5px system-ui,sans-serif";
+    ctx.fillText("通過任一站的驗票口就會開始累積",cx,cy+12);
   }
-  ctx.stroke();
-  // 面積
-  const grd=ctx.createLinearGradient(cx-R,cy-R,cx+R,cy+R);
-  grd.addColorStop(0,"rgba(79,175,146,.42)");grd.addColorStop(1,"rgba(154,124,192,.42)");
-  ctx.beginPath();
-  vals.forEach((v,i)=>{
-    const a=-Math.PI/2+i*Math.PI/2, r=R*v;
-    const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r;
-    i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-  });
-  ctx.closePath();ctx.fillStyle=grd;ctx.fill();
-  ctx.strokeStyle="rgba(70,90,84,.75)";ctx.lineWidth=2.5;ctx.stroke();
-  vals.forEach((v,i)=>{
-    const a=-Math.PI/2+i*Math.PI/2, r=R*v;
-    ctx.beginPath();ctx.arc(cx+Math.cos(a)*r,cy+Math.sin(a)*r,5,0,7);
-    ctx.fillStyle="#FFFDFA";ctx.strokeStyle="rgba(70,90,84,.8)";ctx.lineWidth=2.5;ctx.fill();ctx.stroke();
-  });
-  // 標籤
-  ctx.fillStyle="#5C6560";ctx.font="600 16px system-ui,sans-serif";ctx.textBaseline="middle";
-  ctx.textAlign="center";ctx.fillText(RADAR[0][1],cx,cy-R-26);
-  ctx.fillText(RADAR[2][1],cx,cy+R+26);
-  ctx.textAlign="left";  ctx.fillText(RADAR[1][1],cx+R+12,cy);
-  ctx.textAlign="right"; ctx.fillText(RADAR[3][1],cx-R-12,cy);
-  // 評語
+
+  /* ── 四角標籤：路線名＋熟練度百分比 ── */
+  const pctOf=i=>empty?"—":Math.round(vals[i]*100)+"%";
+  const nm=i=>RADAR[i][1];
+  ctx.textBaseline="middle";
+  const lab=(i,x,y,align)=>{
+    ctx.textAlign=align;
+    ctx.fillStyle="#3A403E";ctx.font="600 14.5px system-ui,sans-serif";
+    ctx.fillText(nm(i),x,y);
+    ctx.fillStyle=SOFT[i];ctx.font="700 12.5px ui-monospace,monospace";
+    ctx.fillText(pctOf(i),x,y+17);
+  };
+  lab(0,cx,cy-R-34,"center");
+  lab(2,cx,cy+R+26,"center");
+  lab(1,cx+R+16,cy-8,"left");
+  lab(3,cx-R-16,cy-8,"right");
+
+  /* ── 站長評語 ── */
   let best=0,worst=0;
   vals.forEach((v,i)=>{if(v>vals[best])best=i;if(v<vals[worst])worst=i;});
   const lost=lostRead();
   const worstLost=lost.filter(x=>(x.line||"ap")===RADAR[worst][0]).length;
   const D=dailyRead(), g=gateRead();
-  document.getElementById("weeklySay").innerHTML=
-    "嗶！本週你在<b>"+RADAR[best][1]+"</b>行駛得非常平穩，"+
-    "但經過<b>"+RADAR[worst][1]+"</b>時似乎有點顛簸"+
-    (worstLost?("，那裡還有 "+worstLost+" 件失物沒認領"):"")+"。<br>"+
-    "建議下週多搭乘"+RADAR[worst][1]+"的區間車，順路去失物招領處補補票。<br>"+
-    "<span class='wk-num'>連續通勤 "+(g.streak||0)+" 天　·　今日任務 "+
-    (MISSIONS.filter(m=>(D[m.k]||0)>0).length)+" / 3　·　累積里程 "+mileage()+" km</span>";
+  const done=MISSIONS.filter(m=>(D[m.k]||0)>0).length;
+  const say=empty
+    ? "嗶！這台行車紀錄器還是全新的。<br>"+
+      "先去任何一條路線走一站、通過一次驗票口，下次結算就看得到你的四角熟練度了。"
+    : "嗶！本週你在<b>"+nm(best)+"</b>行駛得最平穩（"+pctOf(best)+"），"+
+      "但經過<b>"+nm(worst)+"</b>時有點顛簸（"+pctOf(worst)+"）"+
+      (worstLost?("，那裡還有 "+worstLost+" 件失物沒認領"):"")+"。<br>"+
+      "<b>下週建議</b>　多搭"+nm(worst)+"的區間車"+
+      (worstLost?"，順路去失物招領處把票補回來。":"，把還沒開通的站點點亮。");
+  document.getElementById("weeklySay").innerHTML=say+
+    "<span class='wk-num'>連續通勤 "+(g.streak||0)+" 天　·　今日任務 "+done+" / 3　·　累積里程 "+mileage()+" km</span>";
 }
 document.getElementById("weeklyBtn").onclick=renderWeekly;
 
@@ -6557,6 +6718,25 @@ if("serviceWorker" in navigator&&location.protocol.startsWith("http")){
     navigator.serviceWorker.register("sw.js").catch(()=>{});
   });
 }
+
+/* ═══ 語言標註：讓螢幕閱讀器與系統朗讀用對的語言 ═══ */
+(function(){
+  var EN=".sent-en,.toc-en,.en,.rel-e,.trap-e,.fs-sent,.st-sent,.rg-sent,.qk-phrase,.pa-en,.opt,.q-stem";
+  function tag(){
+    try{
+      document.querySelectorAll(EN).forEach(function(el){
+        if(!el.getAttribute("lang")&&/[A-Za-z]/.test(el.textContent||"")
+           &&!/[\u4e00-\u9fff]/.test(el.textContent||"")) el.setAttribute("lang","en");
+      });
+      document.querySelectorAll(".zh,.pa-zh").forEach(function(el){
+        if(!el.getAttribute("lang")) el.setAttribute("lang","zh-Hant");
+      });
+    }catch(e){}
+  }
+  tag();
+  var mo=window.MutationObserver&&new MutationObserver(function(){clearTimeout(tag._t);tag._t=setTimeout(tag,120);});
+  if(mo&&document.body)mo.observe(document.body,{childList:true,subtree:true});
+})();
 </script>
 </body>
 </html>
