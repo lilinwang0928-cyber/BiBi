@@ -3935,9 +3935,9 @@ header.top.apphead{padding:0}
   background:var(--wrong);border:2px solid var(--paper);
 }
 
-/* 側邊選單 */
-.drawer{position:fixed;inset:0;z-index:92;background:rgba(40,44,48,.5);backdrop-filter:blur(3px)}
-.drawer[hidden]{display:none}
+/* 側邊選單（class 名稱與失物招領處的木抽屜 .drawer 區隔，不可同名）*/
+.appdrawer{position:fixed;inset:0;z-index:92;background:rgba(40,44,48,.5);backdrop-filter:blur(3px)}
+.appdrawer[hidden]{display:none}
 .dw-panel{
   width:min(300px,84vw);height:100%;overflow:auto;
   background:var(--card);border-right:1.5px solid var(--line);
@@ -4283,7 +4283,7 @@ h3{font-size:clamp(14.5px,3.2vw,16px);line-height:1.5;text-wrap:balance}
 </header>
 
 <!-- 側邊選單 -->
-<div class="drawer" id="drawer" hidden>
+<div class="appdrawer" id="drawer" hidden>
   <div class="dw-panel">
     <div class="dw-head">
       <span class="dw-mark">英文轉運站</span>
@@ -4729,7 +4729,7 @@ h3{font-size:clamp(14.5px,3.2vw,16px);line-height:1.5;text-wrap:balance}
   <p class="meta" style="margin:4px 2px 0">＊對應的版本內容，以各家版本實際的冊次與課次為主。</p>
 </section>
 
-<p class="footline">溯源，塑局<span class="build-ver">v2026.10.02　App</span></p>
+<p class="footline">溯源，塑局<span class="build-ver">v2026.10.03　App</span></p>
 </main>
 <nav class="tabbar" id="tabBar">
   <button class="tb" data-target="sec-hub"><i>🏠</i><span>主介面</span></button>

@@ -1,5 +1,5 @@
 /* 國中英文轉運站　離線快取 */
-const CACHE = "station-v2026.10.02";
+const CACHE = "station-v2026.10.03";
 const PRECACHE = [
   "./",
   "./appendix.html",
